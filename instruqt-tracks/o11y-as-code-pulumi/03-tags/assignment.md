@@ -1,6 +1,6 @@
 ---
 slug: tags
-id: ieswaeo6pneg
+id: f9ehirj8hyp4
 type: challenge
 title: 'Lab: Tags'
 teaser: Tagging your applications

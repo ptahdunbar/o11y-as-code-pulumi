@@ -1,6 +1,6 @@
 ---
 slug: getting-started
-id: ssfoayegmm4s
+id: q9wvtlyxyhgm
 type: challenge
 title: 'Lab: Getting Started'
 teaser: Setup and run your applications

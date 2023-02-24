@@ -1,6 +1,6 @@
 ---
 slug: pulumi-down
-id: 68pyelmyeh9j
+id: qj9wtgvc7yxa
 type: challenge
 title: 'Lab: pulumi down'
 teaser: Your first pulumi down
