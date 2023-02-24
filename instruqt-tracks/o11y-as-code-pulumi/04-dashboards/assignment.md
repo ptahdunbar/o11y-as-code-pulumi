@@ -1,6 +1,6 @@
 ---
 slug: dashboards
-id: 0whdi5kf34jl
+id: mymcxusxg9sj
 type: challenge
 title: 'Lab: Dashboards'
 teaser: Importing Dashboards from the UI

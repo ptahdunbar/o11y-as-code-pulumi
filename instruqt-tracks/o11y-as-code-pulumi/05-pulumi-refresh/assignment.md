@@ -1,6 +1,6 @@
 ---
 slug: pulumi-refresh
-id: rhz22yyrgtbu
+id: d8txl66eox6z
 type: challenge
 title: 'Lab: pulumi refresh'
 teaser: Synchronizing changes with pulumi refresh
