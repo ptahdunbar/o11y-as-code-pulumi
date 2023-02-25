@@ -22,3 +22,5 @@ curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
 # Install docker-compose
 apt -y update
 apt -y install docker-compose-plugin gcc g++ make vim nano nodejs
+
+exit 0

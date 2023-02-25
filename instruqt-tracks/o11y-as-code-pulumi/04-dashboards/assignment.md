@@ -1,6 +1,6 @@
 ---
 slug: dashboards
-id: mymcxusxg9sj
+id: 6izyoul8ztop
 type: challenge
 title: 'Lab: Dashboards'
 teaser: Importing Dashboards from New Relic

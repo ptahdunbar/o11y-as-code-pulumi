@@ -1,6 +1,6 @@
 ---
 slug: pulumi-up
-id: kt9puunnrwvx
+id: 9i20z086scuk
 type: challenge
 title: 'Lab: pulumi up'
 teaser: Your first pulumi up

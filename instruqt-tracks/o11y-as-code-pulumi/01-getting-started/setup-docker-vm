@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euxo pipefail
 
-echo "Running challenge setup script on host docker-vm"
+echo "$INSTRUQT_USER_NAME running challenge setup script on $INSTRUQT_CHALLENGE_ID"
 
 # Initialize the home directory with the Dockerfile
 mkdir /newrelic

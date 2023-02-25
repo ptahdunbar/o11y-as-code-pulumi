@@ -1,6 +1,6 @@
 ---
 slug: pulumi-down
-id: qj9wtgvc7yxa
+id: nyy1xihrictn
 type: challenge
 title: 'Lab: pulumi down'
 teaser: Your first pulumi down
@@ -11,7 +11,6 @@ notes:
 
     In this challenge, you're tasked with
     - cleaning up your environment by running `pulumi down`
-
 tabs:
 - title: Terminal
   type: terminal

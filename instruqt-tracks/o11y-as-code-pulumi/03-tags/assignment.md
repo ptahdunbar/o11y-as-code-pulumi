@@ -1,6 +1,6 @@
 ---
 slug: tags
-id: f9ehirj8hyp4
+id: lgoafw265eg3
 type: challenge
 title: 'Lab: Tags'
 teaser: Tagging your applications
@@ -56,7 +56,7 @@ const myTeamTag = {
 - Loop through each app and tag them using the `Tag` component.
 
 ```
-apps.forEach(async name => {  
+apps.forEach(async name => {
   const app = await newrelic.getEntity({
     name,
   })

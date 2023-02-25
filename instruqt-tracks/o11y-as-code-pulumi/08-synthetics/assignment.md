@@ -1,6 +1,6 @@
 ---
 slug: synthetics
-id: gyniqop6arko
+id: 1evmabslqkt7
 type: challenge
 title: 'Lab: Synthetic Monitors'
 teaser: Creating Synthetic Monitors

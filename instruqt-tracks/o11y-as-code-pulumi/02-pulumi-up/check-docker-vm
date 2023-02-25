@@ -1,6 +1,9 @@
 #!/bin/bash
 set -euxo pipefail
 
+echo "$INSTRUQT_USER_NAME running challenge check script on $INSTRUQT_CHALLENGE_ID"
+
+
 if [ ! -d /newrelic/o11y/node_modules ]; then
     fail-message "dependencies not installed. Did you run npm install?"
     exit 1

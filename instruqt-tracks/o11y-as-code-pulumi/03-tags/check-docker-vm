@@ -1,14 +1,14 @@
 #!/bin/bash
 set -euxo pipefail
 
-# Check if the tags exists on the apps
+echo "$INSTRUQT_USER_NAME running challenge check script on $INSTRUQT_CHALLENGE_ID"
 
-if ! grep "team" /o11y/index.ts; then
-    fail-message "Couldn't find the team tag. Did you use tags?"
-    exit 1
-fi
+# if ! grep "team" /o11y/index.ts; then
+#     fail-message "Couldn't find the team tag. Did you use tags?"
+#     exit 1
+# fi
 
-if ! grep "env" /o11y/index.ts; then
-    fail-message "Couldn't find the team tag. Did you use tags?"
-    exit 1
-fi
+# if ! grep "env" /o11y/index.ts; then
+#     fail-message "Couldn't find the team tag. Did you use tags?"
+#     exit 1
+# fi

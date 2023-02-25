@@ -1,6 +1,6 @@
 ---
 slug: alerts
-id: ky8x2tka6nex
+id: 5bq5yse4629t
 type: challenge
 title: 'Lab: Alerts'
 teaser: Creating Alerts, Workflows and Notifications

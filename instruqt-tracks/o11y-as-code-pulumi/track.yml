@@ -10,6 +10,5 @@ tags:
 owner: newrelic
 developers:
 - pdunbar@newrelic.com
-maintenance: false
-checksum: "1920019376201802235"
+checksum: "15967786161320412329"
 timelimit: 2700
