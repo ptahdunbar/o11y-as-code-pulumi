@@ -3,5 +3,5 @@ set -euxo pipefail
 
 echo "$INSTRUQT_USER_NAME running challenge solve script on $INSTRUQT_CHALLENGE_ID"
 
-mkdir /newrelic/o11y/node_modules
-touch /newrelic/o11y/Pulumi.dev.yaml
+# mkdir /newrelic/o11y/node_modules
+# touch /newrelic/o11y/Pulumi.dev.yaml
