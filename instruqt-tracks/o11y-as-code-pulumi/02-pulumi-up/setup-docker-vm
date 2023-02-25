@@ -3,3 +3,4 @@ set -euxo pipefail
 
 echo "Running challenge setup script on host docker-vm"
 
+set-workdir /newrelic

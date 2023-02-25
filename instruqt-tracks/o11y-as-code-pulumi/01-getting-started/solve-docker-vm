@@ -3,5 +3,5 @@ set -euxo pipefail
 
 echo "Running challenge solve script on host docker-vm"
 
-make
+cd /newrelic && make
 docker compose up -d
