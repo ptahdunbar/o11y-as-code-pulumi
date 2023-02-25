@@ -1,12 +1,7 @@
 #!/bin/bash
 set -euxo pipefail
 
-if [ ! -d /newrelic/o11y/node_modules ]; then
-    fail-message "dependencies not installed. Did you run npm install?"
-    exit 1
-fi
-
-if [ ! -f /newrelic/o11y/Pulumi.dev.yaml ]; then
-    fail-message "Couldn't find the dev stack. Did you run pulumi config?"
+if ! grep "synthetic" /o11y/index.ts; then
+    fail-message "Couldn't find synthetic monitors. Did you use synthetic monitors?"
     exit 1
 fi

@@ -16,13 +16,7 @@ const apps = [
   'web-api',
 ]
 
-/**
- * Tags
- * 
- * Add tags to our applications to help organize and find your data.
- * 
- * @link https://docs.newrelic.com/docs/new-relic-solutions/new-relic-one/core-concepts/use-tags-help-organize-find-your-data/
- */
+// TODO: Add tags here
 import Tag from "./resources/Tags"
 
 // Fetch an application by name
@@ -44,62 +38,49 @@ apps.forEach(async name => {
   ])
 })
 
-/**
- * Workloads
- * 
- * Group all of the resources together into a single view.
- * 
- * @link https://docs.newrelic.com/docs/new-relic-solutions/new-relic-one/workloads/use-workloads/
- */
+// TODO: Add workloads here
 import Workload from "./resources/Workloads"
-export const workload_permalink = Workload(
+const myWorkload = Workload(
   'O11yAsCode Workload Example (Pulumi)',
   `tags.team = 'acme_corp'`
-).permalink
+)
+export const workload_permalink = myWorkload.permalink
 
-/**
- * Dashboards
- * 
- * @link https://docs.newrelic.com/docs/query-your-data/explore-query-data/dashboards/introduction-dashboards/
- */
+// TODO: Add dashboards here
 import DashboardJson from "./resources/Dashboards"
-const nodeDashboard = DashboardJson(
-  './dashboards/node.json', {
-  name: 'O11y as Code Dashboard (Pulumi)'
-})
-export const dashboard_permalink = nodeDashboard.permalink
+const myTeamDashboard = DashboardJson(
+  './dashboards/node.json',
+  {
+    name: 'O11y as Code Dashboard (Pulumi)'
+  }
+)
+export const dashboard_permalink = myTeamDashboard.permalink
 
-/**
- * Configure email notifications for our alerts
- * 
- * @link https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/alert-notifications/notification-channels-control-where-send-alerts/
- */
+// TODO: Add email notification destinations here
 const config = new pulumi.Config
 import { emailDestination, emailChannel } from "./resources/Notifications"
 const _emailDestination = emailDestination(config.require('notifyViaEmail'))
 
-/**
- * Alerts
- * 
- * Receive notifications when an incident is created, closed, or updated.
- * 
- * @link https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/get-started/your-first-nrql-condition/
- * @link https://docs.newrelic.com/docs/query-your-data/nrql-new-relic-query-language/get-started/introduction-nrql-new-relics-query-language/
- */
+
+// TODO: Add alert imports here
 let policies: { [key: string]: any } = {}
 import AlertPolicy from './resources/AlertPolicy';
 import NrqlAlertCondition from "./resources/NrqlAlertCondition"
 import Workflow from "./resources/Workflow"
+
 apps.forEach(async name => {
+
+  // TODO: Add alert policies here
   policies[name] = AlertPolicy({
     name,
     /**
-     * The rollup strategy for the policy.
-     * Options include: `PER_POLICY`, `PER_CONDITION`, or `PER_CONDITION_AND_TARGET`. The default is `PER_POLICY`.
-     */
+      * The rollup strategy for the policy.
+      * Options include: `PER_POLICY`, `PER_CONDITION`, or `PER_CONDITION_AND_TARGET`. The default is `PER_POLICY`.
+      */
     incidentPreference: 'PER_CONDITION',
   });
 
+  // TODO: Add alert conditions here
   NrqlAlertCondition({
     name: `${name}-latency-condition`,
     policyId: policies[name].id.apply((id:any) => id),
@@ -118,13 +99,7 @@ apps.forEach(async name => {
     dependsOn: policies[name],
   })
 
-  /**
-   * Workflow notifications
-   * 
-   * Configure notifications for incident workflows to use email.
-   * 
-   * @link https://docs.newrelic.com/docs/alerts-applied-intelligence/applied-intelligence/incident-workflows/incident-workflows/
-   */
+  // TODO: Add workflow notifications here
   const _emailChannel = emailChannel(_emailDestination)
   Workflow({
     name,
@@ -137,13 +112,7 @@ apps.forEach(async name => {
   })
 })
 
-/**
- * Synthetics
- * 
- * Proactively monitor your web applications and APIs from around the world.
- * 
- * @link https://docs.newrelic.com/docs/synthetics/synthetic-monitoring/getting-started/get-started-synthetic-monitoring/
- */
+// TODO: Add synthetic monitors here
 import SyntheticsMonitor from "./resources/SyntheticsMonitor"
 let urls = [
   'http://acme-corp.com',

@@ -3,17 +3,17 @@ slug: dashboards
 id: mymcxusxg9sj
 type: challenge
 title: 'Lab: Dashboards'
-teaser: Importing Dashboards from the UI
+teaser: Importing Dashboards from New Relic
 notes:
 - type: text
   contents: |-
-    # Your first pulumi up
+    # Importing Dashboards from the UI
 
     In this challenge, you're tasked with
-    - install project dependencies in the `o11y` directory.
-    - Including your pulumi access token
-    - Setting up and configuring your pulumi stack
-    - run pulumi up
+    - Using a pre-built dashboard to generate the dashboard.
+    - Optionally make changes to the dashboard to suit your unique use cases.
+    - Export the dashboard as json and add it to `/o11y/dashboards`
+    - Use the dashboard resource to import the custom dashboard back into New Relic.
 tabs:
 - title: Terminal
   type: terminal
@@ -26,53 +26,47 @@ difficulty: basic
 timelimit: 600
 ---
 
-🧪 Step 1: Install dependencies
+🧪 Step 1: Explore o11y/index.ts
 =======================
 
-Navigate to the o11y directory and install the pulumi dependencies
+- Using the Editor tab, navigate to `o11y/index.ts`
 
 ```
-cd o11y
-npm install
+vim o11y/index.ts
 ```
-🧪 Step 2: Add your pulumi access token
+
+- Explore what's possible by leveraging `o11y/resources/Dashboards.ts`
+
+🧪 Step 2: Import a dashboard from New Relic
 =======================
 
-- Prepare pulumi to use your access token. You may need to create one if you don't already have one.
+Add this after `// TODO: Add dashboards here`
 ```
-pulumi login
-```
-
-- run `pulumi stack select` -- when it prompts to  `<create a new stack>` stack, name it `dev`.
-
-```
-pulumi stack select
+import DashboardJson from "./resources/Dashboards"
 ```
 
-🏁 Step 3: Configure your Pulumi stack
+- Using the `DashboardJson` API, you can pass in a relative path to the dashboard json.
+- The second argument allows you to optionally override parts of the dashboard.
+
+```
+const myTeamDashboard = DashboardJson(
+  './dashboards/node.json',
+  {
+    name: 'O11y as Code Dashboard (Pulumi)'
+  }
+)
+```
+
+- Expose the URL to the dashboard
+```
+export const dashboard_permalink = myTeamDashboard.permalink
+```
+
+🏁 Step 3: pulumi up
 =========
 
-- Configure pulumi to use your [New Relic Account ID](https://docs.newrelic.com/docs/accounts/accounts-billing/account-structure/account-id/).
+- After running `pulumi up` test that tags are added in New Relic.
 
-```
-pulumi config set newrelic:accountId 01234567
-```
-
-- Configure pulumi to use your [New Relic User API Key](https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/#api-table). It should start with "NRAK-".
-- Use the same User API Key for `apiKey` and `adminApiKey`.
-
-```
-pulumi config set newrelic:apiKey --secret NRAK-YYYYYYYYYYYYYY
-pulumi config set newrelic:adminApiKey --secret NRAK-YYYYYYYYYYYYYY
-```
-
-- To receive alert notification emails, configure your `notifyViaEmail` to use your email address.
-
-```
-pulumi config set o11y-as-code-pulumi-newrelic-workshop:notifyViaEmail user@acme.email
-```
-
-- Finally, confirm everything is working by running `pulumi up`
 ```
 pulumi up
 ```

@@ -7,13 +7,12 @@ teaser: Creating Synthetic Monitors
 notes:
 - type: text
   contents: |-
-    # Your first pulumi up
+    # Creating Synthetic Monitors
 
     In this challenge, you're tasked with
-    - install project dependencies in the `o11y` directory.
-    - Including your pulumi access token
-    - Setting up and configuring your pulumi stack
-    - run pulumi up
+    - provide an array of links to proactively check
+    - schedule a simple brower sythentics monitor
+    - tag the sythentics monitors with your team
 tabs:
 - title: Terminal
   type: terminal
@@ -26,53 +25,57 @@ difficulty: basic
 timelimit: 600
 ---
 
-🧪 Step 1: Install dependencies
+🧪 Step 1: Explore o11y/index.ts
 =======================
 
-Navigate to the o11y directory and install the pulumi dependencies
+- Using the Editor tab, navigate to `o11y/index.ts`
 
 ```
-cd o11y
-npm install
+vim o11y/index.ts
 ```
-🧪 Step 2: Add your pulumi access token
+
+- Explore what's possible by leveraging `o11y/resources/SyntheticsMonitor.ts`
+
+🧪 Step 2: Add synthetics monitors
 =======================
 
-- Prepare pulumi to use your access token. You may need to create one if you don't already have one.
-```
-pulumi login
-```
-
-- run `pulumi stack select` -- when it prompts to  `<create a new stack>` stack, name it `dev`.
+- Import `SyntheticsMonitor` after `// TODO: Add synthetic monitors here`
 
 ```
-pulumi stack select
+import SyntheticsMonitor from "./resources/SyntheticsMonitor"
 ```
 
-🏁 Step 3: Configure your Pulumi stack
+- Given an array of links
+```
+let urls = [
+  'http://acme-corp.com',
+  'https://acme-corp.com/0101/index.html',
+]
+```
+
+- Loop through them and call SyntheticsMonitor using the following example:
+```
+urls.forEach(url => SyntheticsMonitor({
+  uri: url,
+  // https://docs.newrelic.com/docs/synthetics/synthetic-monitoring/administration/synthetic-public-minion-ips/#location
+  locationsPublics: ['AWS_US_EAST_1', 'AWS_US_WEST_1'],
+  enableScreenshotOnFailureAndScript: true,
+  status: 'ENABLED',
+  type: 'BROWSER',
+  period: 'EVERY_MINUTE',
+  verifySsl: true,
+  runtimeTypeVersion: '100',
+  runtimeType: 'CHROME_BROWSER',
+  scriptLanguage: 'JAVASCRIPT',
+  tags: [myTeamTag]
+}))
+```
+
+🏁 Step 3: pulumi up
 =========
 
-- Configure pulumi to use your [New Relic Account ID](https://docs.newrelic.com/docs/accounts/accounts-billing/account-structure/account-id/).
+- After running `pulumi up` test that sythenthi moniors are added in New Relic and running successfully.
 
-```
-pulumi config set newrelic:accountId 01234567
-```
-
-- Configure pulumi to use your [New Relic User API Key](https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/#api-table). It should start with "NRAK-".
-- Use the same User API Key for `apiKey` and `adminApiKey`.
-
-```
-pulumi config set newrelic:apiKey --secret NRAK-YYYYYYYYYYYYYY
-pulumi config set newrelic:adminApiKey --secret NRAK-YYYYYYYYYYYYYY
-```
-
-- To receive alert notification emails, configure your `notifyViaEmail` to use your email address.
-
-```
-pulumi config set o11y-as-code-pulumi-newrelic-workshop:notifyViaEmail user@acme.email
-```
-
-- Finally, confirm everything is working by running `pulumi up`
 ```
 pulumi up
 ```
