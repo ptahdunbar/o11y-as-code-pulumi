@@ -1,6 +1,6 @@
 ---
 slug: pulumi-up
-id: kt9puunnrwvx
+id: 9i20z086scuk
 type: challenge
 title: 'Lab: pulumi up'
 teaser: Your first pulumi up
@@ -10,8 +10,8 @@ notes:
     # Your first pulumi up
 
     In this challenge, you're tasked with
-    - install project dependencies in the `o11y` directory.
-    - Including your pulumi access token
+    - installing project dependencies in the `/o11y` directory.
+    - Sign up for pulumi and dropping in your pulumi access token
     - Setting up and configuring your pulumi stack
     - run pulumi up
 tabs:
@@ -63,7 +63,6 @@ pulumi config set newrelic:accountId 01234567
 
 ```
 pulumi config set newrelic:apiKey --secret NRAK-YYYYYYYYYYYYYY
-pulumi config set newrelic:adminApiKey --secret NRAK-YYYYYYYYYYYYYY
 ```
 
 - To receive alert notification emails, configure your `notifyViaEmail` to use your email address.

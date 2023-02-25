@@ -12,11 +12,15 @@ done
 # Install pulumi
 apt -y update
 apt -y install git
+
 curl -fsSL https://get.pulumi.com | sh
 export PATH=/root/.pulumi/bin:$PATH
 
 # install latest node
 curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
 
+# Install docker-compose
 apt -y update
 apt -y install docker-compose-plugin gcc g++ make vim nano nodejs
+
+exit 0

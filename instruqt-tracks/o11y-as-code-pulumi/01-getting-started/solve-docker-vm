@@ -1,7 +1,8 @@
 #!/bin/bash
 set -euxo pipefail
 
-echo "Running challenge solve script on host docker-vm"
+# echo "$INSTRUQT_USER_NAME running challenge solve script on $INSTRUQT_CHALLENGE_ID"
 
-make
-docker compose up -d
+cd /newrelic && make
+
+# docker compose up -d

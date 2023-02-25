@@ -1,19 +1,16 @@
 ---
 slug: tags
-id: f9ehirj8hyp4
+id: lgoafw265eg3
 type: challenge
 title: 'Lab: Tags'
 teaser: Tagging your applications
 notes:
 - type: text
   contents: |-
-    # Your first pulumi up
+    # Tagging your applications
 
     In this challenge, you're tasked with
-    - install project dependencies in the `o11y` directory.
-    - Including your pulumi access token
-    - Setting up and configuring your pulumi stack
-    - run pulumi up
+    - looping through your apps to tag them with `team` and `env` pairs.
 tabs:
 - title: Terminal
   type: terminal
@@ -26,53 +23,59 @@ difficulty: basic
 timelimit: 600
 ---
 
-🧪 Step 1: Install dependencies
+🧪 Step 1: Explore o11y/index.ts
 =======================
 
-Navigate to the o11y directory and install the pulumi dependencies
+Using the Editor tab, navigate to `o11y/index.ts`
 
 ```
-cd o11y
-npm install
+vim o11y/index.ts
 ```
-🧪 Step 2: Add your pulumi access token
+
+- Explore what's possible by leveraging `o11y/resources/Tags.ts`
+
+🧪 Step 2: Add tags to your applications
 =======================
 
-- Prepare pulumi to use your access token. You may need to create one if you don't already have one.
+- Leverage the existing `apps` constant and loop over it to add tags.
+
+Add this after `// TODO: Add tags here`
 ```
-pulumi login
+import Tag from "./resources/Tags"
 ```
 
-- run `pulumi stack select` -- when it prompts to  `<create a new stack>` stack, name it `dev`.
+- Create a `team` tag using this example:
 
 ```
-pulumi stack select
+const myTeamTag = {
+  key: 'team',
+  values: ['acme_corp'],
+}
 ```
 
-🏁 Step 3: Configure your Pulumi stack
+- Loop through each app and tag them using the `Tag` component.
+
+```
+apps.forEach(async name => {
+  const app = await newrelic.getEntity({
+    name,
+  })
+
+  Tag(app, [
+    myTeamTag,
+    {
+      key: 'env',
+      values: ['staging'],
+    }
+  ])
+})
+```
+
+🏁 Step 3: pulumi up
 =========
 
-- Configure pulumi to use your [New Relic Account ID](https://docs.newrelic.com/docs/accounts/accounts-billing/account-structure/account-id/).
+- After running `pulumi up` test that tags are added in New Relic.
 
-```
-pulumi config set newrelic:accountId 01234567
-```
-
-- Configure pulumi to use your [New Relic User API Key](https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/#api-table). It should start with "NRAK-".
-- Use the same User API Key for `apiKey` and `adminApiKey`.
-
-```
-pulumi config set newrelic:apiKey --secret NRAK-YYYYYYYYYYYYYY
-pulumi config set newrelic:adminApiKey --secret NRAK-YYYYYYYYYYYYYY
-```
-
-- To receive alert notification emails, configure your `notifyViaEmail` to use your email address.
-
-```
-pulumi config set o11y-as-code-pulumi-newrelic-workshop:notifyViaEmail user@acme.email
-```
-
-- Finally, confirm everything is working by running `pulumi up`
 ```
 pulumi up
 ```
