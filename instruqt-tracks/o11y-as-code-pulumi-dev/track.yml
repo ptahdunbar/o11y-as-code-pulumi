@@ -1,14 +1,15 @@
-slug: o11y-as-code-pulumi
-id: yitbiwhv45wh
-title: Observability as Code with Pulumi
+slug: o11y-as-code-pulumi-dev
+id: olhxqhs4p8bm
+title: DEV - Observability as Code with Pulumi
 teaser: This workshop demonstrates how to apply Observability as Code using Pulumi
   and New Relic together.
 description: Observability as Code with Pulumi and New Relic together.
 icon: https://cdn.instruqt.com/assets/templates/docker.png
 tags:
-- prod
+- dev
 owner: newrelic
 developers:
 - pdunbar@newrelic.com
-checksum: "14497739660749802825"
+maintenance: true
+checksum: "8270221753164418568"
 timelimit: 2700
