@@ -3,18 +3,18 @@ import { Input, Resource } from '@pulumi/pulumi';
 import { NrqlAlertConditionNrql } from '@pulumi/newrelic/types/input';
 
 export default function ({
-    name,
-    policyId,
-    nrql,
-    dependsOn,
+  policyId,
+  name,
+  nrql,
+  dependsOn,
 }: {
-    name: string,
-    policyId: number,
-    nrql: Input<NrqlAlertConditionNrql>,
-    dependsOn?: Input<Resource>,
+  policyId: number,
+  name: string,
+  nrql: Input<NrqlAlertConditionNrql>,
+  dependsOn?: Input<Resource>,
 }) {
-  return new newrelic.NrqlAlertCondition(`${name}-error-condition`, {
-    description: 'Alert when error rates exceed acceptable threshold.',
+  return new newrelic.NrqlAlertCondition(`${name}`, {
+    description: `Alert when ${name} rates exceeds acceptable threshold.`,
     policyId,
     nrql,
     critical: {

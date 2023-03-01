@@ -13,7 +13,7 @@ export default function ({
 }) {
   return new newrelic.Workflow(`${name}-workflow`, {
     // accountId: newrelic.config.accountId,
-    name: `${name}-workflow (Pulumi)`,
+    name: `workflow-${name} (Pulumi)`,
     issuesFilter: {
       name,
       type: 'FILTER',

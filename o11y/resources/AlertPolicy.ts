@@ -7,7 +7,7 @@ export default function ({
     name: string,
     incidentPreference: string,
 }): newrelic.AlertPolicy {
-  return new newrelic.AlertPolicy(`${name}-alert`, {
+  return new newrelic.AlertPolicy(`alert-${name}`, {
     name: `${name} Alert Policy (Pulumi)`,
     incidentPreference,
   });

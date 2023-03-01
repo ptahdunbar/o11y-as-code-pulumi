@@ -16,10 +16,12 @@ const apps = [
   'web-api',
 ]
 
-// TODO: Add tags here
 apps.forEach(async name => {
   console.log(name)
 })
+
+// TODO: Add tags here
+
 
 // TODO: Add workloads here
 
@@ -37,12 +39,15 @@ apps.forEach(async name => {
 
   // TODO: Add alert policies here
 
+
   // TODO: Add alert conditions here
+
 
   // TODO: Add workflow notifications here
 
 })
 
 // TODO: Add synthetic monitors here
+
 
 // That's all folks :D

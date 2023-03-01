@@ -10,16 +10,16 @@ notes:
     # Use Workloads to organize your resources
 
     In this challenge, you're tasked with
-    - Creating a workload to organize all of your resources
-    - using a common tag to group all resources together.
+    - Creating a workload to organize all of your resources into one view
+    - Workloads uses a common tag to group all resources together.
 tabs:
-- title: Terminal
-  type: terminal
-  hostname: docker-vm
 - title: Editor
   type: code
   hostname: docker-vm
-  path: /newrelic
+  path: /newrelic/o11y
+- title: Terminal
+  type: terminal
+  hostname: docker-vm
 difficulty: basic
 timelimit: 600
 ---
@@ -60,10 +60,12 @@ export const workload_permalink = myWorkload.permalink
 🏁 Step 3: pulumi up
 =========
 
-- After running `pulumi up` you should see a workload_permalink output value linking to your New Relic Workload!
+- Navigate to the terminal tab, `cd o11y`, run `pulumi up` and confirm the changes.
 
 ```
 pulumi up
 ```
+
+- Pulumi will output a `workload_permalink` value linking to your New Relic Workload!
 
 To complete the challenge, press **Check**
