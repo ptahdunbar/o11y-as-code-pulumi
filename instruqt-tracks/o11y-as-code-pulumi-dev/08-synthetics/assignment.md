@@ -1,6 +1,6 @@
 ---
 slug: synthetics
-id: lp6lnflcevg4
+id: by017dxhxge7
 type: challenge
 title: 'Lab: Synthetic Monitors'
 teaser: Creating Synthetic Monitors
@@ -10,13 +10,14 @@ notes:
     # Creating Synthetic Monitors
 
     In this challenge, you're tasked with
-    - provide an array of links to proactively check
-    - schedule a simple brower sythentics monitor
-    - tag the sythentics monitors with your team
+    - providing a set of links to proactively check for errors
+    - schedule a simple brower sythentics monitor check
+    - add tags to the sythentic monitor checks
 tabs:
 - title: Terminal
   type: terminal
   hostname: docker-vm
+  workdir: /newrelic/o11y
 - title: Editor
   type: code
   hostname: docker-vm
@@ -67,14 +68,14 @@ urls.forEach(url => SyntheticsMonitor({
   runtimeTypeVersion: '100',
   runtimeType: 'CHROME_BROWSER',
   scriptLanguage: 'JAVASCRIPT',
-  tags: [myTeamTag]
+  tags: appTags
 }))
 ```
 
 🏁 Step 3: pulumi up
 =========
 
-- After running `pulumi up` test that sythenthi moniors are added in New Relic and running successfully.
+- After running `pulumi up` test that your sythenthic monior checks are added in New Relic and running successfully.
 
 ```
 pulumi up

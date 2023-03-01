@@ -11,7 +11,7 @@ notes:
 
     In this challenge, you're tasked with
     - configuring your applications with the proper `NEW_RELIC_LICENSE_KEY`
-    - start your applications using docker compose
+    - starting your applications using docker compose
 tabs:
 - title: Terminal
   type: terminal
@@ -24,36 +24,39 @@ difficulty: basic
 timelimit: 300
 ---
 
-🧪 Step 1: run make
+🧪 Step 1: Setup applications
 =======================
 
 In the root workspace directory, run the `make` command.
 It will generate `.env` files for your applications.
-Update the `NEW_RELIC_LICENSE_KEY` in both .env files.
-Once you're finish editing, run `docker compose up -d`
 
 ```
 make
-vim apps/web-api/.env
-vim apps/login-service/.env
 ```
+
 🧪 Step 2: Add your New Relic License Keys
 =======================
 
 Using the Editor tab, update the `.env` files to add your `NEW_RELIC_LICENSE_KEY` to each application.
+
+- apps/web-api/.env
+- apps/login-service/.env
 
 .env file:
 ```
 NEW_RELIC_LICENSE_KEY=AABBCC
 ```
 
-🏁 Finish
+🏁 Step 3: Finish
 =========
-Verify that everything is working by checking Docker.
+
+- Verify that everything is working by checking Docker.
 
 ```
 docker compose up -d
 ```
+
+- Optionally view the logs from the application. Behind the scenes smoke tests are running to simulate load on your applications. In a few minutes you'll be able to view this data in New Relic.
 
 ```
 docker compose logs -f

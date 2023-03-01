@@ -10,15 +10,17 @@ notes:
     # Tagging your applications
 
     In this challenge, you're tasked with
-    - looping through your apps to tag them with `team` and `env` pairs.
+    - looping through your apps
+    - tagging them with `team` and `env` key value pairs.
 tabs:
-- title: Terminal
-  type: terminal
-  hostname: docker-vm
 - title: Editor
   type: code
   hostname: docker-vm
-  path: /newrelic
+  path: /newrelic/o11y
+- title: Terminal
+  type: terminal
+  hostname: docker-vm
+  workdir: /newrelic/o11y
 difficulty: basic
 timelimit: 600
 ---
@@ -41,19 +43,25 @@ vim o11y/index.ts
 
 Add this after `// TODO: Add tags here`
 ```
-import Tag from "./resources/Tags"
+import AddTags from "./resources/Tags"
 ```
 
-- Create a `team` tag using this example:
+- Create a tags array with two key/values objects for `team` and `env`:
 
 ```
-const myTeamTag = {
-  key: 'team',
-  values: ['acme_corp'],
-}
+const appTags = [
+  {
+    key: 'team',
+    values: ['acme_corp'],
+  },
+  {
+    key: 'env',
+    values: ['staging'],
+  }
+]
 ```
 
-- Loop through each app and tag them using the `Tag` component.
+- Loop through each app and tag them using the `AddTags` component.
 
 ```
 apps.forEach(async name => {
@@ -61,23 +69,19 @@ apps.forEach(async name => {
     name,
   })
 
-  Tag(app, [
-    myTeamTag,
-    {
-      key: 'env',
-      values: ['staging'],
-    }
-  ])
+  AddTags(app, appTags)
 })
 ```
 
 🏁 Step 3: pulumi up
 =========
 
-- After running `pulumi up` test that tags are added in New Relic.
+- Navigate to the terminal tab, `cd o11y`, run `pulumi up` and confirm the changes.
 
 ```
 pulumi up
 ```
+
+- Navigate to New Relic and verify that the tags were added successfully to your applications.
 
 To complete the challenge, press **Check**

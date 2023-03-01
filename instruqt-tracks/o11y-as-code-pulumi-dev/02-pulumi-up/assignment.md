@@ -10,14 +10,16 @@ notes:
     # Your first pulumi up
 
     In this challenge, you're tasked with
-    - installing project dependencies in the `/o11y` directory.
-    - Sign up for pulumi and dropping in your pulumi access token
-    - Setting up and configuring your pulumi stack
-    - run pulumi up
+    - In `/o11y` directory, add pulumi to your project
+    - If you haven't already, sign up for pulumi and add your pulumi access token
+    - Configure your pulumi `dev` stack
+    - Add your New Relic credentials using `pulumi config`
+    - run `pulumi up`
 tabs:
 - title: Terminal
   type: terminal
   hostname: docker-vm
+  workdir: /newrelic/o11y
 - title: Editor
   type: code
   hostname: docker-vm
@@ -26,7 +28,7 @@ difficulty: basic
 timelimit: 600
 ---
 
-🧪 Step 1: Install dependencies
+🧪 Step 1: Adding pulumi to your project
 =======================
 
 Navigate to the o11y directory and install the pulumi dependencies
@@ -43,13 +45,16 @@ npm install
 pulumi login
 ```
 
+🧪 Step 3: Configure your Pulumi stack
+=========
+
 - run `pulumi stack select` -- when it prompts to  `<create a new stack>` stack, name it `dev`.
 
 ```
 pulumi stack select
 ```
 
-🏁 Step 3: Configure your Pulumi stack
+🏁 Step 4: Add Pulumi config and New Relic secrets
 =========
 
 - Configure pulumi to use your [New Relic Account ID](https://docs.newrelic.com/docs/accounts/accounts-billing/account-structure/account-id/).
@@ -59,7 +64,6 @@ pulumi config set newrelic:accountId 01234567
 ```
 
 - Configure pulumi to use your [New Relic User API Key](https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/#api-table). It should start with "NRAK-".
-- Use the same User API Key for `apiKey` and `adminApiKey`.
 
 ```
 pulumi config set newrelic:apiKey --secret NRAK-YYYYYYYYYYYYYY

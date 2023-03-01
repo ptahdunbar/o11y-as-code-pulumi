@@ -7,21 +7,21 @@ teaser: Importing Dashboards from New Relic
 notes:
 - type: text
   contents: |-
-    # Importing Dashboards from the UI
+    # Importing New Relic Dashboards from the UI
 
     In this challenge, you're tasked with
     - Using a pre-built dashboard to generate the dashboard.
-    - Optionally make changes to the dashboard to suit your unique use cases.
-    - Export the dashboard as json and add it to `/o11y/dashboards`
-    - Use the dashboard resource to import the custom dashboard back into New Relic.
+    - (Optionally) make changes to the dashboard to suit your unique use cases.
+    - Export the dashboard as json and add it to `/o11y/dashboards` directory.
+    - Use the `DashboardJson` resource to import the custom dashboard back into New Relic.
 tabs:
-- title: Terminal
-  type: terminal
-  hostname: docker-vm
 - title: Editor
   type: code
   hostname: docker-vm
   path: /newrelic
+- title: Terminal
+  type: terminal
+  hostname: docker-vm
 difficulty: basic
 timelimit: 600
 ---
@@ -65,10 +65,12 @@ export const dashboard_permalink = myTeamDashboard.permalink
 🏁 Step 3: pulumi up
 =========
 
-- After running `pulumi up` test that tags are added in New Relic.
+- Navigate to the terminal tab, `cd o11y`, run `pulumi up` and confirm the changes.
 
 ```
 pulumi up
 ```
+
+- Pulumi will output a `dashboard_permalink` value linking to your Dashboard!
 
 To complete the challenge, press **Check**

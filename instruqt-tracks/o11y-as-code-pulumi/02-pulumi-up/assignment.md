@@ -43,7 +43,7 @@ npm install
 pulumi login
 ```
 
-- run `pulumi stack select` -- when it prompts to  `<create a new stack>` stack, name it `dev`.
+- run `pulumi stack init` -- and name it `dev`.
 
 ```
 pulumi stack select
@@ -58,8 +58,8 @@ pulumi stack select
 pulumi config set newrelic:accountId 01234567
 ```
 
-- Configure pulumi to use your [New Relic User API Key](https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/#api-table). It should start with "NRAK-".
-- Use the same User API Key for `apiKey` and `adminApiKey`.
+- Configure pulumi to use your [New Relic User API Key](https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/#api-table).
+- Note that it should start with "NRAK-".
 
 ```
 pulumi config set newrelic:apiKey --secret NRAK-YYYYYYYYYYYYYY

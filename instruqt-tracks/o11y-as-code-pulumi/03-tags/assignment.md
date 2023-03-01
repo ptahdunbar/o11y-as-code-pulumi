@@ -74,10 +74,12 @@ apps.forEach(async name => {
 🏁 Step 3: pulumi up
 =========
 
-- After running `pulumi up` test that tags are added in New Relic.
+- Navigate to the terminal tab, `cd o11y`, run `pulumi up` and confirm the changes.
 
 ```
 pulumi up
 ```
+
+- Verify that those tags are added in New Relic.
 
 To complete the challenge, press **Check**

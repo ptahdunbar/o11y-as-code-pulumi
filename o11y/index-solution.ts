@@ -17,25 +17,24 @@ const apps = [
 ]
 
 // TODO: Add tags here
-import Tag from "./resources/Tags"
+import addTags from "./resources/Tags"
 
 // Fetch an application by name
-const myTeamTag = {
-  key: 'team',
-  values: ['acme_corp'],
-}
-apps.forEach(async name => {  
-  const app = await newrelic.getEntity({
-    name,
-  })
+const appTags = [
+  {
+    key: 'team',
+    values: ['acme_corp'],
+  },
+  {
+    key: 'env',
+    values: ['staging'],
+  }
+]
 
-  Tag(app, [
-    myTeamTag,
-    {
-      key: 'env',
-      values: ['staging'],
-    }
-  ])
+apps.forEach(async name => {  
+  const app = await newrelic.getEntity({name})
+
+  addTags(app, appTags)
 })
 
 // TODO: Add workloads here

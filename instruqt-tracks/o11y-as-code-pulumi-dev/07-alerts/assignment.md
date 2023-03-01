@@ -1,6 +1,6 @@
 ---
 slug: alerts
-id: l1ihgelbwlzw
+id: hhxnnvggstn6
 type: challenge
 title: 'Lab: Alerts'
 teaser: Creating Alerts, Workflows and Notifications
@@ -10,14 +10,15 @@ notes:
     # Creating Alerts, Workflows and Notifications
 
     In this challenge, you're tasked with
-    - For each app, create an alert policy
-    - with one or more alert conditions
-    - add an email destintation and channel
-    - add a workflow
+    - Creating alert policies for each app
+    - Each app will monitor for latency and error rates
+    - Configure an email destintation and channel
+    - Adding a workflow for sending notifications when certain thresholds are met.
 tabs:
 - title: Terminal
   type: terminal
   hostname: docker-vm
+  workdir: /newrelic/o11y
 - title: Editor
   type: code
   hostname: docker-vm
@@ -43,15 +44,15 @@ Explore what's possible by leveraging
 🧪 Step 2: Configure email notifications
 =======================
 
+- Import the email resources from notifications after `// TODO: Add email notification destinations here`
+```
+import { emailDestination, emailChannel } from "./resources/Notifications"
+```
+
 - Let's use `Pulumi.Config` to get the email used for our notifications.
-- Import `Pulumi.Config` after `// TODO: Add email notification destinations here`
 
 ```
 const config = new pulumi.Config
-```
-- Import the email resources from notifications
-```
-import { emailDestination, emailChannel } from "./resources/Notifications"
 ```
 
 - Create an email destination using an email pulled from pulumi's config: `notifyViaEmail`
@@ -92,11 +93,11 @@ policies[name] = AlertPolicy({
 import NrqlAlertCondition from "./resources/NrqlAlertCondition"
 ```
 
-- Inside the loop right after the alert policy, create two `NrqlAlertCondition` conditions.
+- create two `NrqlAlertCondition` conditions after `// TODO: Add alert conditions here`
 ```
 NrqlAlertCondition({
-  name: `${name}-latency-condition`,
   policyId: policies[name].id.apply((id:any) => id),
+  name: `latency-condition-${name}`,
   nrql: {
     query: `SELECT (count(apm.service.error.count) / count(apm.service.transaction.duration))*100 FROM Metric WHERE (appName ='${name}') AND (transactionType = 'Web')`,
   },
@@ -104,8 +105,8 @@ NrqlAlertCondition({
 })
 
 NrqlAlertCondition({
-  name: `${name}-error-condition`,
   policyId: policies[name].id.apply((id:any) => id),
+  name: `error-condition-${name}`,
   nrql: {
     query: `SELECT count(*) FROM TransactionError WHERE appName = '${name}'`,
   },
@@ -115,7 +116,7 @@ NrqlAlertCondition({
 
 - run `pulumi up` to check your work.
 
-🏁 Step 5: Setup Workflows
+🧪 Step 5: Setup Workflows
 =======================
 
 - import `Workflow` after `TODO: Add alert imports before the forEach loop`

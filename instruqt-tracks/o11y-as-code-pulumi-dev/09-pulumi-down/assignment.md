@@ -1,6 +1,6 @@
 ---
 slug: pulumi-down
-id: mmw6s2b8o5uy
+id: 7zn2sm0gkhmm
 type: challenge
 title: 'Lab: pulumi down'
 teaser: Your first pulumi down
@@ -15,6 +15,7 @@ tabs:
 - title: Terminal
   type: terminal
   hostname: docker-vm
+  workdir: /newrelic/o11y
 - title: Editor
   type: code
   hostname: docker-vm
@@ -26,9 +27,12 @@ timelimit: 600
 🏁 Run Pulumi Down
 =========
 
-- Finally, confirm everything is working by running `pulumi up`
+- In the terminal tab, `cd o11y`, run `pulumi down` to destroy all of your resources in New Relic.
+
+- This will reset your environment while still maintaining the code to reproduce it again if and when needed.
+
 ```
-pulumi up
+pulumi down
 ```
 
 To complete the challenge, press **Check**
