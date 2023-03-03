@@ -5,12 +5,17 @@ echo "Starting request loop"
 eval "$(grep ^PORT= .env)"
 
 while true; do
-  # hit the endpoints
   echo http://localhost:${PORT}/
   curl --silent http://localhost:${PORT}/
+  
+  # random sleep between 1 and 10 seconds
+  sleep $((1 + $RANDOM % 10))
 
-  echo http://localhost:${PORT}/webrequest
+  echo http://localhost:${PORT}/health
   curl --silent http://localhost:${PORT}/health
   # random sleep between 1 and 10 seconds
   sleep $((1 + $RANDOM % 10))
+
+  echo http://localhost:${PORT}/health
+  curl --silent http://localhost:${PORT}/health
 done
