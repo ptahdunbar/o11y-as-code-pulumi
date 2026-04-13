@@ -10,5 +10,9 @@ tags:
 owner: newrelic
 developers:
 - pdunbar@newrelic.com
-checksum: "14497739660749802825"
-timelimit: 2700
+- jsius@newrelic.com
+- dkim@newrelic.com
+- sng@newrelic.com
+- ladato@newrelic.com
+checksum: "1843466110132790903"
+timelimit: 4800
